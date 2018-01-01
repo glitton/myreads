@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import './App.css'
 
 class ListBooks extends Component {
+  state = {
+    readStatus: 'Currently Reading'
+  }
   render() {
     return (
+    <div className="bookshelf">
+      <h2 className="bookshelf-title">{this.props.status}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
         {this.props.books.map((book) => (
@@ -28,6 +33,7 @@ class ListBooks extends Component {
         ))}
         </ol>
       </div>
+    </div>
     )
   }
 }
