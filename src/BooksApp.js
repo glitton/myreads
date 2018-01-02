@@ -18,7 +18,6 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log(BooksAPI.getAll())
     return (
       <div className="app">
         {this.state.showSearchPage ? (
