@@ -6,9 +6,19 @@ import SearchBooks from './SearchBooks'
 
 
 class BooksApp extends React.Component {
-
   state = {
     books: [],
+    shelf: [
+      {
+        "currentlyReading": "Currently Reading"
+      },
+      {
+        "wantToRead": "Want to Read"
+      },
+      {
+        "read": "Read"
+      }
+    ],
     showSearchPage: false
   }
 
@@ -31,11 +41,13 @@ class BooksApp extends React.Component {
 
             <div className="list-books-content">
               <div>
-
-                <ListBooks status={"Currently Reading"} books={this.state.books}/>
-                <ListBooks status={"Want To Read"} books={this.state.books}/>
-                <ListBooks status={"Read"} books={this.state.books}/>
-
+                <ListBooks status={"Currently Reading"}
+                           books={this.state.books}
+                           shelf={this.state.shelf}/>
+                <ListBooks status={"Want To Read"}
+                           books={this.state.books}/>
+                <ListBooks status={"Read"}
+                           books={this.state.books}/>
               </div>
             </div>
 
