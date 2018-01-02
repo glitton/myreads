@@ -4,10 +4,6 @@ import './App.css'
 
 
 class ListBooks extends Component {
-  state = {
-    readStatus: 'Currently Reading'
-
-  }
   render() {
     return (
     <div className="bookshelf">
