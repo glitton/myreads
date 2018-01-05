@@ -29,9 +29,12 @@ class App extends React.Component {
 
             <div className="list-books-content">
               <div>
-                <BookShelf sectionTitle={"Currently Reading"} />
-                <BookShelf sectionTitle={"Want To Read"} />
-                <BookShelf sectionTitle={"Read"} />
+                <BookShelf sectionTitle={"Currently Reading"}
+                           books={this.state.books}/>
+                <BookShelf sectionTitle={"Want To Read"}
+                           books={this.state.books}/>
+                <BookShelf sectionTitle={"Read"}
+                          books={this.state.books}/>
               </div>
             </div>
 
