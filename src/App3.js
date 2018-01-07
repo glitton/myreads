@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import BookShelf from './BookShelf';
+import BookShelf from './BookShelf3';
 import * as BooksAPI from './BooksAPI';
 import SearchBooks from './SearchBooks';
 
