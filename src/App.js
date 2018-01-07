@@ -1,8 +1,8 @@
-import React from 'react'
-import './App.css'
-import BookShelf from './BookShelf'
-import * as BooksAPI from './BooksAPI'
-import SearchBooks from './SearchBooks'
+import React from 'react';
+import './App.css';
+import BookShelf from './BookShelf';
+import * as BooksAPI from './BooksAPI';
+import SearchBooks from './SearchBooks';
 
 
 class App extends React.Component {
@@ -66,4 +66,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default App;
