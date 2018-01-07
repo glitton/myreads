@@ -6,22 +6,28 @@ import SearchBooks from './SearchBooks';
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-      showSearchPage: false
-    };
-  }
+  state = {
+    books: [],
+    showSearchPage: false
+  };
 
-  componentDidMount() {
+  componentWillMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books });
     })
   }
 
-  shelfStatus(shelf) {
-    return this.state.books.filter(book => book.shelf === shelf);
+  shelfStatus(shelf){
+    return this.state.books.filter((book) => book.shelf === shelf);
+  }
+
+  changeShelf(id, value) {
+    const index = this.state.books.findIndex((book) => book.id === id);
+    let book = this.state.books[index];
+    book.shelf = value;
+    let books = this.state.books;
+    books[index] = book;
+    this.setState({ books });
   }
 
   render() {
@@ -39,14 +45,14 @@ class App extends React.Component {
             <div className="list-books-content">
               <div>
                 <BookShelf sectionTitle={"Currently Reading"}
-                           books={this.state.books}
-                           shelfStatus={this.shelfStatus("currentlyReading")}/>
+                           shelfStatus={this.shelfStatus("currentlyReading")}
+                           changeShelf = {this.changeShelf.bind(this)}/>
                 <BookShelf sectionTitle={"Want To Read"}
-                           books={this.state.books}
-                           shelfStatus={this.shelfStatus("wantToRead")}/>
+                           shelfStatus={this.shelfStatus("wantToRead")}
+                           changeShelf = {this.changeShelf.bind(this)}/>
                 <BookShelf sectionTitle={"Read"}
-                           books={this.state.books}
-                           shelfStatus={this.shelfStatus("read")}/>
+                           shelfStatus={this.shelfStatus("read")}
+                           changeShelf = {this.changeShelf.bind(this)}/>
               </div>
             </div>
 
