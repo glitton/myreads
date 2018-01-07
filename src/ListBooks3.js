@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
-import './App.css'
+import React from 'react';
+import './App.css';
 
 
-class ListBooks extends Component {
+class ListBooks extends React.Component {
+
+  handleChange(e) {
+    const chooseShelf = e.target.value;
+    this.props.changeShelf(this.props.id, chooseShelf);
+  }
+
   render() {
     return (
       <li>
@@ -15,12 +21,11 @@ class ListBooks extends Component {
                 }}>
             </div>
             <div className="book-shelf-changer">
-              <select>
+              <select onChange={this.handleChange.bind(this)}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
-                <option value="none">None</option>
               </select>
             </div>
           </div>
@@ -32,4 +37,4 @@ class ListBooks extends Component {
   }
 }
 
-export default ListBooks
+export default ListBooks;
