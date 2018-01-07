@@ -7,16 +7,31 @@ import SearchBooks from './SearchBooks'
 
 class App extends React.Component {
   state = {
-    books: []
-  }
+    books: [],
+    showSearchPage: false
+  };
 
-  componentDidMount() {
+  componentWillMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
+      this.setState({ books });
     })
   }
 
+  changeShelf(id, value) {
+    const index = this.state.books.findIndex((book) => book.id === id);
+    let book = this.state.books[index];
+    book.shelf = value;
+    let books = this.state.books;
+    books[index] = book;
+    this.setState({ books });
+  }
+
+  shelfBooks(shelf){
+    return this.state.books.filter((book) => book.shelf === shelf);
+  }
+
   render() {
+    console.log(this.state.books);
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -30,11 +45,14 @@ class App extends React.Component {
             <div className="list-books-content">
               <div>
                 <BookShelf sectionTitle={"Currently Reading"}
-                           books={this.state.books}/>
+                           books={this.shelfBooks("currentlyReading")}
+                           changeShelf = {this.changeShelf.bind(this)}/>
                 <BookShelf sectionTitle={"Want To Read"}
-                           books={this.state.books}/>
+                           books={this.shelfBooks("wantToRead")}
+                           changeShelf = {this.changeShelf.bind(this)}/>
                 <BookShelf sectionTitle={"Read"}
-                          books={this.state.books}/>
+                           books={this.shelfBooks("read")}
+                           changeShelf = {this.changeShelf.bind(this)}/>
               </div>
             </div>
 

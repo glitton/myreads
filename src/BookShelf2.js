@@ -4,6 +4,7 @@ import ListBooks from './ListBooks';
 
 
 class BookShelf extends React.Component {
+
   render() {
     return(
       <div className="bookshelf">
@@ -14,8 +15,6 @@ class BookShelf extends React.Component {
               return <ListBooks
                         key={book.id}
                         book={book}
-                        id={book.id}
-                        changeShelf={this.props.changeShelf}
                       />
             })}
           </ol>

@@ -4,11 +4,6 @@ import './App.css';
 
 class ListBooks extends React.Component {
 
-  handleChange(e) {
-    const chooseShelf = e.target.value;
-    this.props.changeShelf(this.props.id, chooseShelf);
-  }
-
   render() {
     return (
       <li>
@@ -21,7 +16,7 @@ class ListBooks extends React.Component {
                 }}>
             </div>
             <div className="book-shelf-changer">
-              <select onChange={this.handleChange.bind(this)}>
+              <select onChange={this.handleChange}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -37,4 +32,4 @@ class ListBooks extends React.Component {
   }
 }
 
-export default ListBooks
+export default ListBooks;

@@ -1,34 +1,27 @@
-import React from 'react'
-import './App.css'
-import ListBooks from './ListBooks'
-import * as BooksAPI from './BooksAPI'
-import SearchBooks from './SearchBooks'
+import React from 'react';
+import './App.css';
+import BookShelf from './BookShelf';
+import * as BooksAPI from './BooksAPI';
+import SearchBooks from './SearchBooks';
 
 
-class BooksApp extends React.Component {
-  state = {
-    books: [],
-    shelf: [
-      {
-        "currentlyReading": "Currently Reading"
-      },
-      {
-        "wantToRead": "Want to Read"
-      },
-      {
-        "read": "Read"
-      }
-    ],
-    showSearchPage: false
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+      showSearchPage: false
+    };
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
+      this.setState({ books });
     })
   }
 
   render() {
+    console.log(this.state.books);
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -41,12 +34,11 @@ class BooksApp extends React.Component {
 
             <div className="list-books-content">
               <div>
-                <ListBooks status={"Currently Reading"}
-                           books={this.state.books}
-                           shelf={this.state.shelf}/>
-                <ListBooks status={"Want To Read"}
+                <BookShelf sectionTitle={"Currently Reading"}
                            books={this.state.books}/>
-                <ListBooks status={"Read"}
+                <BookShelf sectionTitle={"Want To Read"}
+                           books={this.state.books}/>
+                <BookShelf sectionTitle={"Read"}
                            books={this.state.books}/>
               </div>
             </div>
@@ -61,4 +53,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default App;
