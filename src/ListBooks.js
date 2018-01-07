@@ -1,14 +1,9 @@
 import React from 'react';
 import './App.css';
+import Book from './Book';
 
 
 class ListBooks extends React.Component {
-
-  handleChange(e) {
-    const chooseShelf = e.target.value;
-    this.props.changeShelf(this.props.id, chooseShelf);
-  }
-
   render() {
     return (
       <li>
@@ -20,14 +15,7 @@ class ListBooks extends React.Component {
                 backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})`
                 }}>
             </div>
-            <div className="book-shelf-changer">
-              <select onChange={this.handleChange.bind(this)}>
-                <option value="none" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-              </select>
-            </div>
+            <Book />
           </div>
           <div className="book-title">{this.props.book.title}</div>
           <div className="book-authors">{this.props.book.authors}</div>
